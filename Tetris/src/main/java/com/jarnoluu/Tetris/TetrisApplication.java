@@ -44,9 +44,6 @@ public class TetrisApplication extends Application {
         StackPane.setAlignment(canvas, Pos.TOP_CENTER);
         
         Scene scene = new Scene(root, WIDTH, HEIGHT);
-        
-        //root.prefWidthProperty().bind(scene.widthProperty());
-        //root.prefHeightProperty().bind(scene.heightProperty());
 
         primaryStage.setTitle("Tetris");
         primaryStage.setScene(scene);
