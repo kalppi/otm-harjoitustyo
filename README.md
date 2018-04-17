@@ -6,4 +6,4 @@
 
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 
-[Sovelluslogiikka](dokumentaatio/sovelluslogiikka.md)
+[Arkkitehtuuri](dokumentaatio/arkkitehtuuri.md)
