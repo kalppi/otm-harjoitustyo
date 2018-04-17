@@ -1,0 +1,1 @@
+![Sovelluslogiikka](sovelluslogiikka.png)
