@@ -77,22 +77,12 @@ public class Game {
         this.moveCurrentBlock(-1, 0);
     }
     
-    public void moveRight() {
-        //double x = this.currentBlock.getX() + 1;
-        
-        //if (x > this.areaWidth - 3 + this.currentBlock.getEmptySpaceRight()) return;
-        
-        //this.currentBlock.setX(x);
-        
+    public void moveRight() {        
         this.moveCurrentBlock(1, 0);
     }
     
     public void moveDown() {
-        double y = this.currentBlock.getY();
-        
         this.moveCurrentBlock(0, 1);
-        
-        //this.currentBlock.setY(y + 1);
     }
     
     public void rotate() {
