@@ -22,10 +22,21 @@ public class TetrisApplication extends Application {
     private final int BLOCK_SIZE = 15;
     private final int AREA_WIDTH = 10;
     private final int AREA_HEIGHT = 20;
+    
+    private Game game;
+    private GameManager gm;
+    private VBox vbox;
 
     @Override
     public void init() throws Exception {
         super.init();
+    }
+    
+    private void startGame(String name) {
+        this.game.setName(name);
+        this.gm.start();
+
+        this.vbox.setVisible(false);
     }
 
     @Override
@@ -33,17 +44,17 @@ public class TetrisApplication extends Application {
         Canvas wellCanvas = new Canvas(BLOCK_SIZE * AREA_WIDTH, BLOCK_SIZE * AREA_HEIGHT);        
         Canvas statsCanvas = new Canvas(100, BLOCK_SIZE * AREA_HEIGHT);
         
-        Game game = new Game(BLOCK_SIZE, AREA_WIDTH, AREA_HEIGHT);
+        this.game = new Game(BLOCK_SIZE, AREA_WIDTH, AREA_HEIGHT);
         IGraphics graphics = new FancyGraphics(game, wellCanvas, statsCanvas);
         
-        GameManager gm = new GameManager(game, graphics);
+        this.gm = new GameManager(game, graphics);
         
         StackPane pane = new StackPane();
         HBox hbox = new HBox();
         
         hbox.getChildren().addAll(wellCanvas, statsCanvas);
         
-        VBox vbox = new VBox();
+        this.vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         
         Label label = new Label("Nimi:");
@@ -58,10 +69,7 @@ public class TetrisApplication extends Application {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
                 try {
-                    game.setName(textField.getText());
-                    gm.start();
-                    
-                    vbox.setVisible(false);
+                    this.startGame(textField.getText());
                 } catch (IllegalArgumentException e) {
                     
                 }
@@ -75,6 +83,27 @@ public class TetrisApplication extends Application {
         
         Scene scene = new Scene(pane, BLOCK_SIZE * AREA_WIDTH + 100, BLOCK_SIZE * AREA_HEIGHT);
 
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            KeyCode code = key.getCode();
+            
+            switch (code) {
+                case LEFT:
+                    game.moveLeft();
+                    break;
+                case RIGHT:
+                    game.moveRight();
+                    break;
+                case UP:
+                    game.rotate();
+                    break;
+                case DOWN:
+                    game.moveDown();
+                    break;
+                default:
+                    break;
+            }
+        });
+        
         primaryStage.setTitle("Tetris");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);

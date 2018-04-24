@@ -55,12 +55,14 @@ public class TetrisBlockTest {
     
     @Test
     public void rotateLeftWorks() {
-        assertEquals("000\n110\n110", TetrisBlock.create('o').rotateLeft().toString());
+        assertEquals("110\n110\n000", TetrisBlock.create('o').rotateLeft().toString());
+        assertEquals("010\n010\n010", TetrisBlock.create('i').rotateLeft().toString());
     }
     
     @Test
     public void rotateRightWorks() {
-        assertEquals("011\n011\n000", TetrisBlock.create('o').rotateRight().toString());
+        assertEquals("110\n110\n000", TetrisBlock.create('o').rotateRight().toString());
+        assertEquals("010\n010\n010", TetrisBlock.create('i').rotateLeft().toString());
     }
     
     @Test

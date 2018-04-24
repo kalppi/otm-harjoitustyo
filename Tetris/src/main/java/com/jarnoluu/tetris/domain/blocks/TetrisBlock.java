@@ -12,8 +12,7 @@ public class TetrisBlock implements IBlock {
     private double y;
     
     private TetrisBlock(char type, int[][] data) {
-        this.type = type;
-        this.data = data;
+        this(type, data, 0, 0);
     }
     
     private TetrisBlock(char type, int[][] data, double x, double y) {
@@ -137,6 +136,8 @@ public class TetrisBlock implements IBlock {
     
     @Override
     public IBlock rotateLeft() {
+        if (this.type == 'o') return this;
+        
         int[][] rotated = new int[3][3];
         
         for (int x = 0; x < 3; x++) {
@@ -152,6 +153,8 @@ public class TetrisBlock implements IBlock {
     
     @Override
     public IBlock rotateRight() {
+        if (this.type == 'o') return this;
+        
         int[][] rotated = new int[3][3];
         
         for (int x = 0; x < 3; x++) {

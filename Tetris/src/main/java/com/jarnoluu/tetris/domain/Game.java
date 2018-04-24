@@ -10,7 +10,7 @@ public class Game {
     private final int areaWidth;
     private final int areaHeight;
     private final Character[][] staticBlocks;
-    private double fallSpeed = 70.0;
+    private double fallSpeed = 2.0;
     private String name = null;
     private double gameTime = 0;
     private TetrisBlock currentBlock;
@@ -73,6 +73,32 @@ public class Game {
         return this.gameTime;
     }
     
+    public void moveLeft() {
+        this.moveCurrentBlock(-1, 0);
+    }
+    
+    public void moveRight() {
+        //double x = this.currentBlock.getX() + 1;
+        
+        //if (x > this.areaWidth - 3 + this.currentBlock.getEmptySpaceRight()) return;
+        
+        //this.currentBlock.setX(x);
+        
+        this.moveCurrentBlock(1, 0);
+    }
+    
+    public void moveDown() {
+        double y = this.currentBlock.getY();
+        
+        this.moveCurrentBlock(0, 1);
+        
+        //this.currentBlock.setY(y + 1);
+    }
+    
+    public void rotate() {
+        this.currentBlock.rotateRight();
+    }
+    
     public IBlock findGhost() {
         IBlock ghost = this.currentBlock.clone();
         ghost.setY(0);
@@ -96,7 +122,7 @@ public class Game {
                     int xx = (int) block.getX() + x;
                     int yy = (int) block.getY() + y;
                     
-                    if (xx < 0 || yy < 0) {
+                    if (xx < 0 || yy < 0 || xx >= this.areaWidth || yy >= this.areaHeight) {
                         continue;
                     }
                     
@@ -115,13 +141,10 @@ public class Game {
                     int partX = (int) (block.getX() + changeX) + x;
                     int partY = (int) (block.getY() + changeY) + y;
                     
-                    if (partX < 0) {
-                        continue;
-                    } else if (partY < 0) {
-                        continue;
-                    }
-
-                    if (partY >= this.areaHeight) {
+                    if (partX < 0
+                            || partY < 0
+                            || partX >= this.areaWidth
+                            || partY >= this.areaHeight) {
                         return true;
                     }
                     
@@ -159,16 +182,8 @@ public class Game {
         this.nextBlock = TetrisBlock.randomBlock();
     }
     
-    public void update(double dt) throws IllegalStateException {
-        if (!this.gameStarted) {
-            throw new IllegalStateException("Can't call Game::update before Game::start");
-        } else if (this.gameEnded) {
-            return;
-        }
-        
-        this.gameTime += dt;
-        
-        double changeY = dt * this.fallSpeed;
+    private void moveCurrentBlock(double changeX, double changeY) {
+        if (this.currentBlock == null) return;
         
         boolean collision = false;        
         double lastY = 0;
@@ -192,13 +207,30 @@ public class Game {
         if (collision) {
             this.spawnNextBlock();
         } else {
-            this.currentBlock.setY(this.currentBlock.getY() + changeY);
+            if (!this.collides(this.currentBlock, changeX, 0)) {
+                this.currentBlock.setX(this.currentBlock.getX() + changeX);
+                this.currentBlock.setY(this.currentBlock.getY() + changeY);   
+            }
         }
         
         if (this.gameIsFinished()) {
             this.gameEnded = true;
             this.currentBlock = null;
         }
+    }
+    
+    public void update(double dt) throws IllegalStateException {
+        if (!this.gameStarted) {
+            throw new IllegalStateException("Can't call Game::update before Game::start");
+        } else if (this.gameEnded) {
+            return;
+        }
+        
+        this.gameTime += dt;
+        
+        double changeY = dt * this.fallSpeed;
+        
+        this.moveCurrentBlock(0, changeY);
     }
     
     private void spawnBlock(TetrisBlock block) {
