@@ -25,8 +25,10 @@ public class Game {
         this.staticBlocks = new Character[areaWidth][areaHeight];
     }
     
-    public void setName(String name) throws IllegalArgumentException {
-        if (name.length() < 3) {
+    private void setName(String name) throws IllegalArgumentException {
+        if (name == null) {
+            throw new IllegalArgumentException("Name can't be null");
+        } else if (name.length() < 3) {
             throw new IllegalArgumentException("Name needs to be at least 3 characters");
         }
     
@@ -229,10 +231,8 @@ public class Game {
         this.currentBlock = block;
     }
     
-    public void start() throws IllegalStateException {
-        if (this.name == null) {
-            throw new IllegalStateException("Name is not set");
-        }
+    public void start(String name) throws IllegalStateException {
+        this.setName(name);
         
         this.spawnNextBlock();
         

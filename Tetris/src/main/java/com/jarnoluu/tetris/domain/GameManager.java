@@ -8,13 +8,13 @@ public class GameManager extends AnimationTimer {
     private IGraphics graphics;
     private long lastFrameTime;
     
-    public void start(String name, Game game, IGraphics graphics) {
-        game.setName(name);
-        
+    public GameManager(Game game, IGraphics graphics) {
         this.game = game;
         this.graphics = graphics;
-        
-        game.start();
+    }
+    
+    public void start(String name) {
+        this.game.start(name);
         
         this.lastFrameTime = System.nanoTime();
         

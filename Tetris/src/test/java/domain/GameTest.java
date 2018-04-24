@@ -33,19 +33,23 @@ public class GameTest {
     
     @Test
     public void canSetName() {
-        game.setName("Pera");
+        game.start("Pera");
         assertEquals("Pera", game.getName());
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void cantSetTooShortName() {
-        game.setName("ab");
+        game.start("ab");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void cantSetNullName() {
+        game.start(null);
     }
     
     @Test
     public void blocksAreCreatedOnStart() {
-        game.setName("test");
-        game.start();
+        game.start("test");
         
         assertNotEquals(null, game.getCurrentBlock());
         assertNotEquals(null, game.getNextBlock());
@@ -58,8 +62,7 @@ public class GameTest {
     
     @Test
     public void gameStateIsUpdated() {
-        game.setName("test");
-        game.start();
+        game.start("test");
         
         double y1 = game.getCurrentBlock().getY();
         
@@ -72,8 +75,7 @@ public class GameTest {
     
     @Test
     public void collisionWorksInHightSpeeds() {
-        game.setName("test");
-        game.start();
+        game.start("test");
         
         game.update(100);
         
@@ -82,8 +84,7 @@ public class GameTest {
     
     @Test
     public void ghostBlockWorks() {
-        game.setName("test");
-        game.start();
+        game.start("test");
         
         assertEquals(18.0, game.findGhost().getY(), 0.00001);
     }
