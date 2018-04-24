@@ -9,4 +9,5 @@
 | 13.4. | 3    | Pelimekaanikoiden kehitystä |
 | 17.4. | 1    | Koodin siistintää |
 | 24.4. | 3    | Laatikon pyörittely ja liikuttelu toimii |
-| yht.  | 17    | |
+| 24.4. | 2    | Refaktorointia |
+| yht.  | 19    | |
