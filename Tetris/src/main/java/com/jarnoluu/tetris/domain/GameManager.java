@@ -8,7 +8,9 @@ public class GameManager extends AnimationTimer {
     private IGraphics graphics;
     private long lastFrameTime;
     
-    public void start(Game game, IGraphics graphics) {
+    public void start(String name, Game game, IGraphics graphics) {
+        game.setName(name);
+        
         this.game = game;
         this.graphics = graphics;
         

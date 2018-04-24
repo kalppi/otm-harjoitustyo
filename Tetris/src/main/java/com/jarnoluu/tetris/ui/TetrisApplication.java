@@ -34,8 +34,7 @@ public class TetrisApplication extends Application {
     }
     
     private void startGame(String name) {
-        this.game.setName(name);
-        this.gm.start(this.game, this.graphics);
+        this.gm.start(name, this.game, this.graphics);
 
         this.vbox.setVisible(false);
     }
