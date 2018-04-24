@@ -138,17 +138,15 @@ public class Game {
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 if (data[y][x] == 1) {
-                    int partX = (int) (block.getX() + changeX) + x;
-                    int partY = (int) (block.getY() + changeY) + y;
+                    int partX = (int) (block.getX() + changeX) + x,
+                        partY = (int) (block.getY() + changeY) + y;
                     
                     if (partX < 0
                             || partY < 0
                             || partX >= this.areaWidth
                             || partY >= this.areaHeight) {
                         return true;
-                    }
-                    
-                    if (this.staticBlocks[partX][partY] != null) {
+                    } else if (this.staticBlocks[partX][partY] != null) {
                         return true;
                     }
                 }
@@ -183,7 +181,9 @@ public class Game {
     }
     
     private void moveCurrentBlock(double changeX, double changeY) {
-        if (this.currentBlock == null) return;
+        if (this.currentBlock == null) {
+            return;
+        }
         
         boolean collision = false;        
         double lastY = 0;

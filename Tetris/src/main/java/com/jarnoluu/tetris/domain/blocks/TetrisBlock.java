@@ -136,7 +136,9 @@ public class TetrisBlock implements IBlock {
     
     @Override
     public IBlock rotateLeft() {
-        if (this.type == 'o') return this;
+        if (this.type == 'o') {
+            return this;
+        }
         
         int[][] rotated = new int[3][3];
         
@@ -153,7 +155,9 @@ public class TetrisBlock implements IBlock {
     
     @Override
     public IBlock rotateRight() {
-        if (this.type == 'o') return this;
+        if (this.type == 'o') {
+            return this;
+        }
         
         int[][] rotated = new int[3][3];
         
@@ -172,12 +176,12 @@ public class TetrisBlock implements IBlock {
     public String toString() {
         StringBuilder s = new StringBuilder();
         
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                s.append(this.data[x][y]);
+        for (int y = 0; y < this.getHeight(); y++) {
+            for (int x = 0; x < this.getWidth(); x++) {
+                s.append(this.data[y][x]);
             }
             
-            if (x < 2) {
+            if (y < this.getHeight() - 1) {
                 s.append("\n");
             }
         }

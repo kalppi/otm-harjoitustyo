@@ -139,4 +139,21 @@ public class CharacterBlock implements IBlock {
     public IBlock rotateRight() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        
+        for (int y = 0; y < this.getHeight(); y++) {
+            for (int x = 0; x < this.getWidth(); x++) {
+                s.append(this.data[y][x]);
+            }
+            
+            if (y < this.getHeight() - 1) {
+                s.append("\n");
+            }
+        }
+        
+        return s.toString();
+    }
 }
