@@ -4,18 +4,15 @@ import javafx.animation.AnimationTimer;
 import com.jarnoluu.tetris.ui.graphics.IGraphics;
 
 public class GameManager extends AnimationTimer {
-    private final Game game;
-    private final IGraphics graphics;
+    private Game game;
+    private IGraphics graphics;
     private long lastFrameTime;
     
-    public GameManager(Game game, IGraphics graphics) {
+    public void start(Game game, IGraphics graphics) {
         this.game = game;
         this.graphics = graphics;
-    }
-    
-    @Override
-    public void start() {
-        this.game.start();
+        
+        game.start();
         
         this.lastFrameTime = System.nanoTime();
         

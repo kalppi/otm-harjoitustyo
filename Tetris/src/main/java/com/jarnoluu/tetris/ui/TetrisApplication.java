@@ -24,6 +24,7 @@ public class TetrisApplication extends Application {
     private final int AREA_HEIGHT = 20;
     
     private Game game;
+    private IGraphics graphics;
     private GameManager gm;
     private VBox vbox;
 
@@ -34,7 +35,7 @@ public class TetrisApplication extends Application {
     
     private void startGame(String name) {
         this.game.setName(name);
-        this.gm.start();
+        this.gm.start(this.game, this.graphics);
 
         this.vbox.setVisible(false);
     }
@@ -44,10 +45,9 @@ public class TetrisApplication extends Application {
         Canvas wellCanvas = new Canvas(BLOCK_SIZE * AREA_WIDTH, BLOCK_SIZE * AREA_HEIGHT);        
         Canvas statsCanvas = new Canvas(100, BLOCK_SIZE * AREA_HEIGHT);
         
+        this.gm = new GameManager();
         this.game = new Game(BLOCK_SIZE, AREA_WIDTH, AREA_HEIGHT);
-        IGraphics graphics = new FancyGraphics(game, wellCanvas, statsCanvas);
-        
-        this.gm = new GameManager(game, graphics);
+        this.graphics = new FancyGraphics(game, wellCanvas, statsCanvas);
         
         StackPane pane = new StackPane();
         HBox hbox = new HBox();
