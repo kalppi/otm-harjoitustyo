@@ -276,7 +276,7 @@ public class Game {
         for (int expl : explosions) {
             for (int y = expl; y > 0; y--) {
                 for (int x = 0; x < this.areaWidth; x++) {
-                    this.staticBlocks[x][y] = this.staticBlocks[x][y-1];
+                    this.staticBlocks[x][y] = this.staticBlocks[x][y - 1];
                 }
             }
         }
