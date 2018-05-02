@@ -1,4 +1,4 @@
-package domain;
+package com.jarnoluu.tetris.domain;
 
 import com.jarnoluu.tetris.domain.blocks.CharacterBlock;
 import java.util.HashMap;
@@ -37,6 +37,10 @@ public class CharacterBlockTest {
         blocks.put('g', "11111\n10000\n10111\n10001\n11111");
         blocks.put('a', "11111\n10001\n11111\n10001\n10001");
         blocks.put('m', "10001\n11011\n10101\n10001\n10001");
+        blocks.put('e', "11111\n10000\n11111\n10000\n11111");
+        blocks.put('o', "11111\n10001\n10001\n10001\n11111");
+        blocks.put('v', "10001\n10001\n10001\n01010\n00100");
+        blocks.put('r', "11111\n10001\n11111\n10010\n10001");
         
         for(HashMap.Entry<Character, String> b : blocks.entrySet()) {
             assertEquals(b.getValue(), CharacterBlock.create(b.getKey()).toString());

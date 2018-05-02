@@ -3,6 +3,9 @@ package com.jarnoluu.tetris.domain.blocks;
 import java.util.Random;
 import javafx.scene.paint.Color;
 
+/**
+ * Kuvaa pelissä käytettäviä palikoita.
+ */
 public class TetrisBlock implements IBlock {
     private static final char[] BLOCK_TYPES = { 'i', 'j', 'l', 'o', 's', 't', 'z' };
     
@@ -56,6 +59,11 @@ public class TetrisBlock implements IBlock {
         this.y = y;
     }
     
+    /**
+     * Kertoo minkä värinen paliakn pitää olla.
+     * @param type palikan tyyppi
+     * @return palikan väri
+     */
     public static Color getColor(char type) {
         switch (type) {
             case 'i':
@@ -77,12 +85,22 @@ public class TetrisBlock implements IBlock {
         }
     }
     
+    /**
+     * Luo satunnaisen palikan.
+     * @return satunnainen palikka
+     */
     static public TetrisBlock randomBlock() {
         int i = new Random().nextInt(TetrisBlock.BLOCK_TYPES.length);
         
         return (TetrisBlock) TetrisBlock.create(TetrisBlock.BLOCK_TYPES[i]);
     }
     
+    /**
+     * Luo halutunlaisen palikan.
+     * @param type palikan tyyppi
+     * @return uusi palikka
+     * @throws IllegalArgumentException 
+     */
     static public IBlock create(char type) throws IllegalArgumentException {
         type = Character.toLowerCase(type);
         
@@ -134,6 +152,10 @@ public class TetrisBlock implements IBlock {
         }
     }
     
+    /**
+     * Pyörittää palikkaa vasemmalle 90 astetta.
+     * @return viittauksen itseensä
+     */
     @Override
     public IBlock rotateLeft() {
         if (this.type == 'o') {
@@ -153,6 +175,10 @@ public class TetrisBlock implements IBlock {
         return this;
     }
     
+    /**
+     * Pyörittää palikkaa oikealle 90 astetta.
+     * @return viittauksen itseensä
+     */
     @Override
     public IBlock rotateRight() {
         if (this.type == 'o') {

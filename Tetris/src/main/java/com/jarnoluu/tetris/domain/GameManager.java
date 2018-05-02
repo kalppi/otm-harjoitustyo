@@ -3,6 +3,9 @@ package com.jarnoluu.tetris.domain;
 import javafx.animation.AnimationTimer;
 import com.jarnoluu.tetris.ui.graphics.IGraphics;
 
+/**
+ * Hoitaa pelitilanteen päivityksen ja grafiikan piirtämisen.
+ */
 public class GameManager extends AnimationTimer {
     private Game game;
     private IGraphics graphics;
@@ -13,6 +16,10 @@ public class GameManager extends AnimationTimer {
         this.graphics = graphics;
     }
     
+    /**
+     * Aloittaa pelin.
+     * @param name pelaajan nimi
+     */
     public void start(String name) {
         this.game.start(name);
         

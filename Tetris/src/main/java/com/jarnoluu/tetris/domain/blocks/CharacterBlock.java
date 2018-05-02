@@ -1,5 +1,8 @@
 package com.jarnoluu.tetris.domain.blocks;
 
+/**
+ * Kuvaa kirjaimia muistuttavia palikoita.
+ */
 public class CharacterBlock implements IBlock {
     private char type;
     private int[][] data;
@@ -20,6 +23,12 @@ public class CharacterBlock implements IBlock {
         this.y = x;
     }
     
+    /**
+     * Luo halutun kirjaimen mukaisen palikan.
+     * @param type kirjain
+     * @return uusi palikka
+     * @throws IllegalArgumentException 
+     */
     static public IBlock create(char type) throws IllegalArgumentException {
         type = Character.toLowerCase(type);
         
@@ -97,7 +106,7 @@ public class CharacterBlock implements IBlock {
 
     @Override
     public double getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.x;
     }
 
     @Override

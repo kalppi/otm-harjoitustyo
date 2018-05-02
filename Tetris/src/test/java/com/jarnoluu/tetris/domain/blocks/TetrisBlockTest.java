@@ -1,4 +1,4 @@
-package domain;
+package com.jarnoluu.tetris.domain.blocks;
 
 import com.jarnoluu.tetris.domain.blocks.TetrisBlock;
 import java.util.HashMap;
@@ -66,7 +66,11 @@ public class TetrisBlockTest {
     }
     
     @Test
-    public void getColorWorks() {
-        assertEquals(Color.RED, TetrisBlock.getColor('i'));
+    public void blocksHaveColor() {
+        char[] blocks = new char[] {'i', 'j', 'l', 'o', 's', 't', 'z'};
+        
+        for(char block : blocks) {
+            assertNotEquals (null, TetrisBlock.getColor(block));
+        }
     }
 }

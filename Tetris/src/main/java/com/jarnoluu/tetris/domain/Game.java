@@ -2,8 +2,13 @@ package com.jarnoluu.tetris.domain;
 
 import com.jarnoluu.tetris.domain.blocks.TetrisBlock;
 import com.jarnoluu.tetris.domain.blocks.IBlock;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+/**
+ * Pelin kulusta ja logiikasta vastuussa oleva luokka.
+ */
 public class Game {
     private final Random random = new Random();
     private final int blockSize;
@@ -17,6 +22,7 @@ public class Game {
     private TetrisBlock nextBlock;
     private boolean gameEnded = false;
     private boolean gameStarted = false;
+    private int score = 0;
     
     public Game(int blockSize, int areaWidth, int areaHeight) {
         this.areaWidth = areaWidth;
@@ -33,6 +39,14 @@ public class Game {
         }
     
         this.name = name;
+    }
+    
+    public double getSpeed() {
+        return this.fallSpeed;
+    }
+    
+    public int getScore() {
+        return this.score;
     }
     
     public String getName() {
@@ -75,22 +89,40 @@ public class Game {
         return this.gameTime;
     }
     
+    /**
+     * Liikuttaa pelattavaa palikkaa vasemmalle.
+     */
     public void moveLeft() {
         this.moveCurrentBlock(-1, 0);
     }
     
+    /**
+     * Liikuttaa pelattavaa palikkaa oikealle.
+     */
     public void moveRight() {        
         this.moveCurrentBlock(1, 0);
     }
     
+    /**
+     * Liikuttaa pelattavaa palikkaa alas.
+     */
     public void moveDown() {
         this.moveCurrentBlock(0, 1);
     }
     
+    /**
+     * Pyörittää pelattavaa palikkaa oikealle.
+     */
     public void rotate() {
         this.currentBlock.rotateRight();
     }
     
+    /**
+     * Etsii nykyisen liikuteltavan palikan mukaisen "haamu" palikan.
+     * Haamupakikan voi piirtää ruudlle, jolloin se näyttää mihin kohtaan
+     * palikka asettuu.
+     * @return Palikka
+     */
     public IBlock findGhost() {
         IBlock ghost = this.currentBlock.clone();
         ghost.setY(0);
@@ -105,7 +137,7 @@ public class Game {
         return ghost;
     }
     
-    private void freezeBlock(IBlock block) {
+    protected void freezeBlock(IBlock block) {
         int[][] data = block.getData();
         
         for (int x = 0; x < block.getWidth(); x++) {
@@ -198,6 +230,8 @@ public class Game {
         
         if (collision) {
             this.spawnNextBlock();
+            
+            this.fallSpeed += 0.1;
         } else {
             if (!this.collides(this.currentBlock, changeX, 0)) {
                 this.currentBlock.setX(this.currentBlock.getX() + changeX);
@@ -211,6 +245,52 @@ public class Game {
         }
     }
     
+    protected List<Integer> findExplosions() {
+        List<Integer> expl = new ArrayList();
+        
+        for (int y = 0; y < this.areaHeight; y++) {
+            boolean explode = true;
+            
+            for (int x = 0; x < this.areaWidth; x++) {
+                if (this.staticBlocks[x][y] == null) {
+                    explode = false;
+                    break;
+                }
+            }
+            
+            if (explode) {
+                expl.add(y);
+            }
+        }
+        
+        return expl;
+    }
+    
+    private void clearExplosions(List<Integer> explosions) {
+        for (int expl : explosions) {
+            for (int x = 0; x < this.areaWidth; x++) {
+                this.staticBlocks[x][expl] = null;
+            }
+        }
+        
+        for (int expl : explosions) {
+            for (int y = expl; y > 0; y--) {
+                for (int x = 0; x < this.areaWidth; x++) {
+                    this.staticBlocks[x][y] = this.staticBlocks[x][y-1];
+                }
+            }
+        }
+    }
+    
+    private int calculateScore(int explCount) {
+        return (int) (explCount * 100 * (1 + ((explCount - 1) / 10.0)));
+    }
+    
+    /**
+     * Päivittää pelitilanteen muuttuneen ajan mukaisesti.
+     * @param dt Kulunut aika edellisen päivityksen jälkeen
+     * @throws IllegalStateException 
+     */
     public void update(double dt) throws IllegalStateException {
         if (!this.gameStarted) {
             throw new IllegalStateException("Can't call Game::update before Game::start");
@@ -223,6 +303,14 @@ public class Game {
         double changeY = dt * this.fallSpeed;
         
         this.moveCurrentBlock(0, changeY);
+        
+        List<Integer> explosions = this.findExplosions();
+        
+        if (explosions.size() > 0) {
+            this.score += this.calculateScore(explosions.size());
+            
+            this.clearExplosions(explosions);
+        }
     }
     
     private void spawnBlock(TetrisBlock block) {
@@ -231,6 +319,11 @@ public class Game {
         this.currentBlock = block;
     }
     
+    /**
+     * Aloittaa pelin.
+     * @param name pelaajan nimi
+     * @throws IllegalStateException 
+     */
     public void start(String name) throws IllegalStateException {
         this.setName(name);
         

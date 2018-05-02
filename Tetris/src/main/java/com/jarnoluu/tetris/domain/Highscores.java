@@ -3,6 +3,9 @@ package com.jarnoluu.tetris.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Pistelista.
+ */
 public class Highscores {
     private final List<Score> scores = new ArrayList();
     private final int limit;
@@ -17,6 +20,11 @@ public class Highscores {
         }
     }
     
+    /**
+     * Lisää nimen pistelistalle.
+     * @param name pelaajan nimi
+     * @param score pelaajan pisteet
+     */
     public void add(String name, int score) {
         if (this.scores.size() > 0) {
             for (int i = 0; i < this.scores.size(); i++) {

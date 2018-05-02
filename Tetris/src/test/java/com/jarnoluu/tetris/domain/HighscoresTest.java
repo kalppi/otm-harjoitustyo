@@ -1,8 +1,5 @@
-package domain;
+package com.jarnoluu.tetris.domain;
 
-import com.jarnoluu.tetris.domain.Highscores;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

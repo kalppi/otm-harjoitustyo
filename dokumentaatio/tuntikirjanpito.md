@@ -10,4 +10,6 @@
 | 17.4. | 1    | Koodin siistintää |
 | 24.4. | 3    | Laatikon pyörittely ja liikuttelu toimii |
 | 24.4. | 2    | Refaktorointia |
-| yht.  | 19    | |
+| 25.4. | 1    | Pistelistan teko
+| 2.5.  | 3	   | Testien tekemistä, pelilogiikan tekoa
+| yht.  | 22    | |

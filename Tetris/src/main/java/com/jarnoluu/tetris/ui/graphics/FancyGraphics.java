@@ -3,6 +3,7 @@ package com.jarnoluu.tetris.ui.graphics;
 import com.jarnoluu.tetris.domain.Game;
 import com.jarnoluu.tetris.domain.blocks.IBlock;
 import com.jarnoluu.tetris.domain.blocks.TetrisBlock;
+import java.text.DecimalFormat;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,6 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Hoitaa pelitilanteen piirtämisen.
+ */
 public class FancyGraphics implements IGraphics {
     private final Canvas well;
     private final Canvas stats;
@@ -155,6 +159,10 @@ public class FancyGraphics implements IGraphics {
         }
     }
     
+    /**
+     * Piirtää pelitilanteen.
+     * @param dt edellisestä päivityksestä kulunut aika
+     */
     @Override
     public void update(double dt) {
         if(!this.game.isRunning()) {
@@ -189,6 +197,15 @@ public class FancyGraphics implements IGraphics {
 
             g2.fillText("Next block:", 5, 25);
             if(nextBlock != null) this.drawBlock(g2, nextBlock, 5, 45);
+            
+            g2.setFill(Color.YELLOWGREEN);
+            g2.fillText("Score:", 5, 80);
+            g2.fillText(String.valueOf(this.game.getScore()), 5, 95);
+            
+            DecimalFormat df = new DecimalFormat("#.00"); 
+            
+            g2.fillText("Speed:", 5, 115);
+            g2.fillText(df.format(game.getSpeed()), 5, 130);
         }        
         
         double ha = this.hueAdd;

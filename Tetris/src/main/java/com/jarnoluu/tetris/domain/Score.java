@@ -1,5 +1,8 @@
 package com.jarnoluu.tetris.domain;
 
+/**
+ * Pistelistassa käytetty apuluokka.
+ */
 public class Score {
     private String name;
     private int score;
