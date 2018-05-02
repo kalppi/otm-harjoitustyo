@@ -16,7 +16,7 @@ Käyttöliittymässä on kolme erilaista näkymää:
 
 Itse peli ja pelin statistiikkoen piirtäminen on eriytetty täysin pelilogiikasta, ja ne piirretään kahteen JavaFX kanvakseen, jotka annetaan konstruktorissa piirtämisen hoitavalle luokalle.
 
-Nimen syöttäminen on toteutettu luomalle VBox joka sijoitetaan uudeksi tasoksi muiden komponenttien päälle.
+Nimen syöttäminen on toteutettu luomalle [VBox](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/layout/VBox.html) joka sijoitetaan uudeksi tasoksi muiden komponenttien päälle.
 
 ## Sovelluslogiikka
 
