@@ -28,7 +28,7 @@ Luokka `Game` hoitaa pelin logiikan ja pelitilanteen etenemisen.
 
 Peliin voisi toteuttaa useita erilaisia graafisia vaihtoehtoja toteuttamalla `IGraphics` rajapinnan, mutta nyt sen on toteuttanut vain yksi luokka `FancyGraphics`.
 
-Luokassa `Game` on kaksi protected-metodia (`findExplosions` ja `freezeBlock`). Normaalisti niitä kutsutaan täysin luokan sisäisesti vain `update` metodista lähtevän kutsuketjun avulla, mutta testauksen helpottamiseksi on tehty kompromissi.
+Luokassa `Game` ei ole muita tärkeitä ulospäin näkyviä metodeja kuin `start` ja `ùpdate`, sekä liikuteltavaa palikkaa hallinnoivat metodit (`moveLeft`, `moveRight`, `moveDown` ja `rotate`). Siinä on kuitenkin kaksi protected-metodia (`findExplosions` ja `freezeBlock`). Normaalisti niitä kutsutaan täysin luokan sisäisesti `update` metodista lähtevän kutsuketjun avulla, mutta testauksen helpottamiseksi on tehty kompromissi.
 
 ## Tietojen pysyväistallennus
 
