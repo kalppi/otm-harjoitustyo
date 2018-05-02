@@ -4,8 +4,6 @@
 
 [Käyttöohje](dokumentaatio/kayttoohje.md)
 
-[Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuurikuvaus.md)
-
 [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
