@@ -111,7 +111,7 @@ public class Game {
      * Lataa pelin käyttämän datan pilvestä .
      */
     public void loadData() {
-        this.scores.load(this.storage.load());
+        this.scores.load(this.storage.load(this.scores.getLimit()));
     }
     
     /**

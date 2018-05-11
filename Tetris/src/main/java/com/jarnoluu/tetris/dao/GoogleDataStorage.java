@@ -6,7 +6,6 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
 import java.io.IOException;
@@ -68,14 +67,14 @@ public class GoogleDataStorage implements IDataStorage {
     }
 
     @Override
-    public Map<Object, Object> load() {
+    public Map<Object, Object> load(int count) {
         try {
             Map<Object, Object> data = new HashMap();
             
             Sheets service = this.getSheetsService();
             
             ValueRange results = service.spreadsheets().values()
-                    .get(SPREADSHEET_ID, "A1:B5")
+                    .get(SPREADSHEET_ID, "A1:B" + count)
                     .execute();
             
             List<List<Object>> values = results.getValues();

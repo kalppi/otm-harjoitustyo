@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface IDataStorage {
     public boolean saveObject(IDataObject obj);
-    public Map<Object, Object> load();
+    public Map<Object, Object> load(int count);
 }

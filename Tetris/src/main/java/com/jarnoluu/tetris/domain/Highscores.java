@@ -23,6 +23,10 @@ public class Highscores implements IDataObject {
         }
     }
     
+    public int getLimit() {
+        return this.limit;
+    }
+    
     /**
      * Lisää nimen pistelistalle.
      * @param name pelaajan nimi
