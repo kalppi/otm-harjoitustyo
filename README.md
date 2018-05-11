@@ -14,6 +14,8 @@ Sovellus on Helsingin yliopiston Tietojenkäsittelytieteen kurssilla Ohjelmistot
 
 [Arkkitehtuuri](dokumentaatio/arkkitehtuuri.md)
 
+[Testaus](dokumentaatio/testaus.md)
+
 ## Releaset
 
 [Viikko 5](https://github.com/kalppi/otm-harjoitustyo/releases/tag/viikko5)

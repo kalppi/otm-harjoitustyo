@@ -19,9 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TetrisApplication extends Application {
-    private final int BLOCK_SIZE = 15;
-    
+public class TetrisApplication extends Application {    
     private Game game;
     private IGraphics graphics;
     private GameManager gm;
@@ -41,10 +39,10 @@ public class TetrisApplication extends Application {
     public void start(Stage primaryStage) throws Exception { 
         GameConfig config = GameConfig.load("config");
         
-        Canvas wellCanvas = new Canvas(BLOCK_SIZE * config.getInt("width"), BLOCK_SIZE * config.getInt("height"));        
-        Canvas statsCanvas = new Canvas(100, BLOCK_SIZE * config.getInt("height"));
+        Canvas wellCanvas = new Canvas(config.getInt("block-size") * config.getInt("width"), config.getInt("block-size") * config.getInt("height"));        
+        Canvas statsCanvas = new Canvas(100, config.getInt("block-size") * config.getInt("height"));
         
-        this.game = new Game(BLOCK_SIZE, config);
+        this.game = new Game(config);
         this.graphics = new FancyGraphics(game, wellCanvas, statsCanvas);
         this.gm = new GameManager(this.game, this.graphics);
         
@@ -62,7 +60,7 @@ public class TetrisApplication extends Application {
         label.setTextFill(Color.WHITE);
         
         TextField textField = new TextField();
-        textField.setMaxWidth(BLOCK_SIZE * config.getInt("width") + 100 - 50);
+        textField.setMaxWidth(config.getInt("block-size") * config.getInt("width") + 100 - 50);
         textField.setTranslateY(5);
         textField.setAlignment(Pos.CENTER);
         
@@ -82,7 +80,7 @@ public class TetrisApplication extends Application {
         
         pane.getChildren().addAll(hbox, vbox);
         
-        Scene scene = new Scene(pane, BLOCK_SIZE * config.getInt("width") + 100, BLOCK_SIZE * config.getInt("height"));
+        Scene scene = new Scene(pane, config.getInt("block-size") * config.getInt("width") + 100, config.getInt("block-size") * config.getInt("height"));
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             KeyCode code = key.getCode();

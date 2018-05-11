@@ -29,10 +29,10 @@ public class Game {
     private boolean gameStarted = false;
     private int score = 0;
     
-    public Game(int blockSize, GameConfig config) {
+    public Game(GameConfig config) {
         this.areaWidth = config.getInt("width");
         this.areaHeight = config.getInt("height");
-        this.blockSize = blockSize;
+        this.blockSize = config.getInt("block-size");
         this.staticBlocks = new Character[areaWidth][areaHeight];
         this.scores = new Highscores(5);
         this.config = config;

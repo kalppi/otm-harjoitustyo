@@ -41,6 +41,7 @@ public class GameConfig {
         
         values.put("width", "10");
         values.put("height", "20");
+        values.put("block-size", "15");
         
         return values;
     }

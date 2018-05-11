@@ -26,7 +26,7 @@ public class GameTest {
     
     @Before
     public void setUp() {
-        this.game = new Game(10, GameConfig.defaults());
+        this.game = new Game(GameConfig.defaults());
     }
     
     @After
@@ -146,5 +146,22 @@ public class GameTest {
         List<Integer> explosions = game.findExplosions();
         
         assertEquals(0, explosions.size());
+    }
+    
+    @Test
+    public void blockCanBeMovedFreely() {
+        game.start("test");
+        
+        for (int i = 0; i < 20; i++) {
+            game.moveRight();
+            game.rotate();
+        }
+        
+        for (int i = 0; i < 20; i++) {
+            game.moveLeft();
+            game.rotate();
+        }
+        
+        assertTrue(game.getCurrentBlock().getX() <= 0);
     }
 }
