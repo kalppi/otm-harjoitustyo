@@ -4,7 +4,7 @@ Ohjelmaa on testattu automatisoiduin yksikkö- ja integraatiotestain JUnitilla s
 
 ## Sovelluslogiikan testaus
 
-Sovelluslogiikkaa eli pakkausta [com.jarnoluu.tetris.domain](https://github.com/kalppi/otm-harjoitustyo/tree/master/src/main/java/com/jarnoluu/tetris/domain) testaavat [GameTest](https://github.com/kalppi/otm-harjoitustyo/tree/master/src/test/java/com/jarnoluu/tetris/domain/GameTest.java), [HighscoresTest](https://github.com/kalppi/otm-harjoitustyo/tree/master/src/test/java/com/jarnoluu/tetris/domain/HighscoresTest.java) ja [TetrisBlockTest](https://github.com/kalppi/otm-harjoitustyo/tree/master/src/test/java/com/jarnoluu/tetris/domain/blocks/TetrisBlockTest.java).
+Sovelluslogiikkaa eli pakkausta [com.jarnoluu.tetris.domain](https://github.com/kalppi/otm-harjoitustyo/tree/master/Tetris/src/main/java/com/jarnoluu/tetris/domain) testaavat [GameTest](https://github.com/kalppi/otm-harjoitustyo/tree/master/Tetris/src/test/java/com/jarnoluu/tetris/domain/GameTest.java), [HighscoresTest](https://github.com/kalppi/otm-harjoitustyo/tree/master/Tetris/src/test/java/com/jarnoluu/tetris/domain/HighscoresTest.java) ja [TetrisBlockTest](https://github.com/kalppi/otm-harjoitustyo/tree/master/Tetris/src/test/java/com/jarnoluu/tetris/domain/blocks/TetrisBlockTest.java).
 
 ## Testauskattavuus
 
