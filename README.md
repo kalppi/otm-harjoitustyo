@@ -22,6 +22,8 @@ Sovellus on Helsingin yliopiston Tietojenkäsittelytieteen kurssilla Ohjelmistot
 
 [Viikko 6](https://github.com/kalppi/otm-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/kalppi/otm-harjoitustyo/releases/tag/loppupalautus)
+
 
 ## Komentorivitoiminnot
 
