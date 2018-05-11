@@ -1,5 +1,7 @@
 package com.jarnoluu.tetris.domain;
 
+import com.jarnoluu.tetris.dao.GoogleDataStorage;
+import com.jarnoluu.tetris.dao.IDataStorage;
 import com.jarnoluu.tetris.domain.blocks.TetrisBlock;
 import com.jarnoluu.tetris.domain.blocks.IBlock;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ public class Game {
     private final int areaWidth;
     private final int areaHeight;
     private final Character[][] staticBlocks;
+    private final Highscores scores;
+    private final IDataStorage storage = new GoogleDataStorage();
     private double fallSpeed = 2.0;
     private String name = null;
     private double gameTime = 0;
@@ -29,6 +33,9 @@ public class Game {
         this.areaHeight = areaHeight;
         this.blockSize = blockSize;
         this.staticBlocks = new Character[areaWidth][areaHeight];
+        this.scores = new Highscores(5);
+        
+        this.scores.load(this.storage.load());
     }
     
     private void setName(String name) throws IllegalArgumentException {
@@ -77,6 +84,10 @@ public class Game {
         return this.areaHeight;
     }
     
+    public Highscores getHighscores() {
+        return this.scores;
+    }
+    
     public boolean isRunning() {
         return this.gameStarted && !this.gameEnded;
     }
@@ -115,12 +126,17 @@ public class Game {
      */
     public void rotate() {
         this.currentBlock.rotateRight();
+        
+        if (this.collides(this.currentBlock, 0, 0)) {
+            this.currentBlock.rotateLeft();
+        }
     }
     
     /**
      * Etsii nykyisen liikuteltavan palikan mukaisen "haamu" palikan.
      * Haamupakikan voi piirtää ruudlle, jolloin se näyttää mihin kohtaan
      * palikka asettuu.
+     * 
      * @return Palikka
      */
     public IBlock findGhost() {
@@ -159,8 +175,8 @@ public class Game {
     private boolean collides(IBlock block, double changeX, double changeY) {
         int[][] data = block.getData();
         
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int x = 0; x < block.getWidth(); x++) {
+            for (int y = 0; y < block.getHeight(); y++) {
                 if (data[y][x] == 1) {
                     int partX = (int) (block.getX() + changeX) + x,
                         partY = (int) (block.getY() + changeY) + y;
@@ -242,6 +258,10 @@ public class Game {
         if (this.gameIsFinished()) {
             this.gameEnded = true;
             this.currentBlock = null;
+            
+            this.scores.add(this.name, this.score);
+            
+            this.storage.saveObject(this.scores);
         }
     }
     

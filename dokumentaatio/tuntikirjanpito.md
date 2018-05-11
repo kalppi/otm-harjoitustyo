@@ -12,4 +12,5 @@
 | 24.4. | 2    | Refaktorointia |
 | 25.4. | 1    | Pistelistan teko
 | 2.5.  | 3	   | Testien tekemistä, pelilogiikan tekoa
-| yht.  | 22    | |
+| 11.5. | 5    | Pistelistan tellennus ja sen näyttäminen
+| yht.  | 27   | |

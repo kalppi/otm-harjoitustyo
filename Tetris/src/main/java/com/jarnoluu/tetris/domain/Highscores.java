@@ -1,12 +1,15 @@
 package com.jarnoluu.tetris.domain;
 
+import com.jarnoluu.tetris.dao.IDataObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Pistelista.
  */
-public class Highscores {
+public class Highscores implements IDataObject {
     private final List<Score> scores = new ArrayList();
     private final int limit;
     
@@ -42,5 +45,25 @@ public class Highscores {
     
     public List<Score> getScores() {
         return this.scores;
+    }
+
+    @Override
+    public Map<Object, Object> getData() {
+        Map<Object, Object> data = new HashMap();
+        
+        for (Score s : this.scores) {
+            data.put(s.getName(), s.getScore());
+        }
+        
+        return data;
+    }
+    
+    public void load(Map<Object, Object> data) {
+        for (Map.Entry<Object, Object> e : data.entrySet()) {
+            String name = String.valueOf(e.getKey());
+            int score = Integer.parseInt(e.getValue().toString());
+            
+            this.add(name, score);
+        }
     }
 }

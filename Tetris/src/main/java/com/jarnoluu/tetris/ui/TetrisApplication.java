@@ -39,7 +39,7 @@ public class TetrisApplication extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {     
+    public void start(Stage primaryStage) throws Exception {        
         Canvas wellCanvas = new Canvas(BLOCK_SIZE * AREA_WIDTH, BLOCK_SIZE * AREA_HEIGHT);        
         Canvas statsCanvas = new Canvas(100, BLOCK_SIZE * AREA_HEIGHT);
         

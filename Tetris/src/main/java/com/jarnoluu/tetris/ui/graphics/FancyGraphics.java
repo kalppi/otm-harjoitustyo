@@ -1,6 +1,8 @@
 package com.jarnoluu.tetris.ui.graphics;
 
 import com.jarnoluu.tetris.domain.Game;
+import com.jarnoluu.tetris.domain.Highscores;
+import com.jarnoluu.tetris.domain.Score;
 import com.jarnoluu.tetris.domain.blocks.IBlock;
 import com.jarnoluu.tetris.domain.blocks.TetrisBlock;
 import java.text.DecimalFormat;
@@ -106,15 +108,18 @@ public class FancyGraphics implements IGraphics {
     
     private void drawBlock(GraphicsContext g, IBlock block, boolean ghost) {
         final int size = this.game.getBlockSize();
+        final Color color = TetrisBlock.getColor(block.getType());
         
-        this.drawBlock(g, block, (int)block.getX() * size, (int)block.getY() * size, ghost);
+        this.drawBlock(g, block, (int)block.getX() * size, (int)block.getY() * size, ghost, color);
     }
     
     private void drawBlock(GraphicsContext g, IBlock block, int xx, int yy) {
-        this.drawBlock(g, block, xx, yy, false);
+        final Color color = TetrisBlock.getColor(block.getType());
+        
+        this.drawBlock(g, block, xx, yy, false, color);
     }
     
-    private void drawBlock(GraphicsContext g, IBlock block, int xx, int yy, boolean ghost) {
+    private void drawBlock(GraphicsContext g, IBlock block, int xx, int yy, boolean ghost, Color color) {
         final int size = this.game.getBlockSize();
         
         if(ghost) {
@@ -122,7 +127,7 @@ public class FancyGraphics implements IGraphics {
             g.setStroke(Color.WHITE);
             g.setLineWidth(1);
         } else {
-            g.setFill(TetrisBlock.getColor(block.getType()));
+            g.setFill(color);
             g.setStroke(Color.BLACK);
         }
         
@@ -258,6 +263,21 @@ public class FancyGraphics implements IGraphics {
                 centerX,
                 centerY
             );
+            
+            Highscores scores = this.game.getHighscores();
+            
+            g2.setFont(Font.font("Verdana", 11));
+            g2.setFill(Color.YELLOWGREEN);
+            g2.setTextAlign(TextAlignment.LEFT);
+            g2.setTextBaseline(VPos.TOP);
+            
+            int y = 3;
+            for (Score score : scores.getScores()) {
+                g2.fillText(score.getName(), 3, y);
+                g2.fillText(String.valueOf(score.getScore()), 3 + 50, y);
+                
+                y += 15;
+            }
         }
     }
 }
