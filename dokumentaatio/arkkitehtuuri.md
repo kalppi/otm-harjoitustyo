@@ -32,7 +32,7 @@ Luokassa `Game` ei ole muita tärkeitä ulospäin näkyviä metodeja kuin `start
 
 ## Tietojen pysyväistallennus
 
-Pakkaus `com.jarnoluu.tetris.dao` hoitaa pelin pistelistan pysyväistallennuksen internetiin. [ei vielä toteutettu]
+Pakkaus `com.jarnoluu.tetris.dao` hoitaa pelin pistelistan pysyväistallennuksen Google Sheetsiin.
 
 ## Päätoiminnallisuudet
 

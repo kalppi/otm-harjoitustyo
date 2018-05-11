@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [tetris.jar](https://github.com/kalppi/otm-harjoitustyo/releases/tag/viikko6)
+Lataa tiedosto [tetris.jar](https://github.com/kalppi/otm-harjoitustyo/releases/tag/loppupalautus)
 
 ## Konfigurointi
 

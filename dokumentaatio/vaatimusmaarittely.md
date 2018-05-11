@@ -2,8 +2,7 @@
 
 ## Soveluksen tarkoitus
 
-Sovellus on Tetris peli. Pelissä on tarkoituksena asetella erimuotoisia ylhäältä putovia laatikoita riveihin.
-Rivin täytyttyä se katoaa, ja antaa pisteitä.
+Sovellus on Tetris peli. Pelissä on tarkoituksena asetella erimuotoisia ylhäältä putovia laatikoita riveihin. Rivin täytyttyä se "jäjähtää", ja antaa pisteitä. Mitä useamman rivin räjäyttää kerralla, sitä enemmän saa pisteitä.
 
 ## Perusversion tarjoama toiminnallisuus
 
@@ -13,3 +12,4 @@ Rivin täytyttyä se katoaa, ja antaa pisteitä.
 - Pelin vauhti kiihtyy pelin edetessä
 - Laatikoita voi liikuttaa ja pyöritellä sekä näppäimistöllä että hiirellä
 - Sivussa näkyy seuraavaksi tuleva laatikko
+- Pelin lopussa näkyy pistelista
