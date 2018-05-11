@@ -27,3 +27,7 @@ Sovellus aukeaa nimen valitsemiseen:
 ![nimi](nimi.png)
 
 Nimen täytyy olla vähintään kolme merkkiä. Hyväksyminen tapahtuu rivinvaihtoa painamalla.
+
+## Pelaaminen
+
+Palikkaa liikutetaan ja pyöritetään nuolinäppäimillä.
