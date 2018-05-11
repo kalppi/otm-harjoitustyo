@@ -13,3 +13,8 @@ Sovellus on Tetris peli. Pelissä on tarkoituksena asetella erimuotoisia ylhää
 - Laatikoita voi liikuttaa ja pyöritellä sekä näppäimistöllä että hiirellä
 - Sivussa näkyy seuraavaksi tuleva laatikko
 - Pelin lopussa näkyy pistelista
+- Peliruudun kokoa voi muokata asetustiedostolla
+
+## Jatkokehitysideoita
+
+- Pistelistalla olisi eriytettynä eri "versioihin" pelistä, eli jos pelaa peliä 10x20 ruudulla niin pistelista olisi eri kuin 5x20 ruudulla.

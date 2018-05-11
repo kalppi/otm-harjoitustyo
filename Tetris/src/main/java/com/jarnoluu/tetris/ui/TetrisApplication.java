@@ -4,6 +4,7 @@ import com.jarnoluu.tetris.ui.graphics.FancyGraphics;
 import com.jarnoluu.tetris.ui.graphics.IGraphics;
 import com.jarnoluu.tetris.domain.GameManager;
 import com.jarnoluu.tetris.domain.Game;
+import com.jarnoluu.tetris.domain.GameConfig;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,8 +21,6 @@ import javafx.stage.Stage;
 
 public class TetrisApplication extends Application {
     private final int BLOCK_SIZE = 15;
-    private final int AREA_WIDTH = 10;
-    private final int AREA_HEIGHT = 20;
     
     private Game game;
     private IGraphics graphics;
@@ -39,13 +38,17 @@ public class TetrisApplication extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {        
-        Canvas wellCanvas = new Canvas(BLOCK_SIZE * AREA_WIDTH, BLOCK_SIZE * AREA_HEIGHT);        
-        Canvas statsCanvas = new Canvas(100, BLOCK_SIZE * AREA_HEIGHT);
+    public void start(Stage primaryStage) throws Exception { 
+        GameConfig config = GameConfig.load("config");
         
-        this.game = new Game(BLOCK_SIZE, AREA_WIDTH, AREA_HEIGHT);
+        Canvas wellCanvas = new Canvas(BLOCK_SIZE * config.getInt("width"), BLOCK_SIZE * config.getInt("height"));        
+        Canvas statsCanvas = new Canvas(100, BLOCK_SIZE * config.getInt("height"));
+        
+        this.game = new Game(BLOCK_SIZE, config);
         this.graphics = new FancyGraphics(game, wellCanvas, statsCanvas);
         this.gm = new GameManager(this.game, this.graphics);
+        
+        this.game.loadData();
         
         StackPane pane = new StackPane();
         HBox hbox = new HBox();
@@ -59,7 +62,7 @@ public class TetrisApplication extends Application {
         label.setTextFill(Color.WHITE);
         
         TextField textField = new TextField();
-        textField.setMaxWidth(BLOCK_SIZE * AREA_WIDTH + 100 - 50);
+        textField.setMaxWidth(BLOCK_SIZE * config.getInt("width") + 100 - 50);
         textField.setTranslateY(5);
         textField.setAlignment(Pos.CENTER);
         
@@ -79,7 +82,7 @@ public class TetrisApplication extends Application {
         
         pane.getChildren().addAll(hbox, vbox);
         
-        Scene scene = new Scene(pane, BLOCK_SIZE * AREA_WIDTH + 100, BLOCK_SIZE * AREA_HEIGHT);
+        Scene scene = new Scene(pane, BLOCK_SIZE * config.getInt("width") + 100, BLOCK_SIZE * config.getInt("height"));
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             KeyCode code = key.getCode();

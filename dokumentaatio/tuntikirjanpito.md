@@ -13,4 +13,5 @@
 | 25.4. | 1    | Pistelistan teko
 | 2.5.  | 3	   | Testien tekemistä, pelilogiikan tekoa
 | 11.5. | 5    | Pistelistan tellennus ja sen näyttäminen
-| yht.  | 27   | |
+| 11.5. | 1    | Asetusluokka
+| yht.  | 28   | |

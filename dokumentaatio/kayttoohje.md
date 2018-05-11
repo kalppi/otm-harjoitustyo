@@ -4,7 +4,12 @@ Lataa tiedosto [tetris.jar](https://github.com/kalppi/otm-harjoitustyo/releases/
 
 ## Konfigurointi
 
-Sovellusta ei tarvitse konfiguroida.
+Peliruudun kokoa pystyy muuttamaan asetustiedostolla. Ruudun koko on oletuksena 10x20, mutta luomalla pelin juureen tiedoston `config` voidaan sitä muokata esimerkiksi seuraavalla tavalla:
+
+```
+width=15
+height=15
+```
 
 ## Ohjelman käyttistäminen
 

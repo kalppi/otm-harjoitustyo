@@ -26,7 +26,7 @@ public class GameTest {
     
     @Before
     public void setUp() {
-        this.game = new Game(10, 10, 20);
+        this.game = new Game(10, GameConfig.defaults());
     }
     
     @After

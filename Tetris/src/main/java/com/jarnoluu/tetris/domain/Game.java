@@ -19,6 +19,7 @@ public class Game {
     private final Character[][] staticBlocks;
     private final Highscores scores;
     private final IDataStorage storage = new GoogleDataStorage();
+    private final GameConfig config;
     private double fallSpeed = 2.0;
     private String name = null;
     private double gameTime = 0;
@@ -28,14 +29,13 @@ public class Game {
     private boolean gameStarted = false;
     private int score = 0;
     
-    public Game(int blockSize, int areaWidth, int areaHeight) {
-        this.areaWidth = areaWidth;
-        this.areaHeight = areaHeight;
+    public Game(int blockSize, GameConfig config) {
+        this.areaWidth = config.getInt("width");
+        this.areaHeight = config.getInt("height");
         this.blockSize = blockSize;
         this.staticBlocks = new Character[areaWidth][areaHeight];
         this.scores = new Highscores(5);
-        
-        this.scores.load(this.storage.load());
+        this.config = config;
     }
     
     private void setName(String name) throws IllegalArgumentException {
@@ -105,6 +105,13 @@ public class Game {
      */
     public void moveLeft() {
         this.moveCurrentBlock(-1, 0);
+    }
+    
+    /**
+     * Lataa pelin käyttämän datan pilvestä .
+     */
+    public void loadData() {
+        this.scores.load(this.storage.load());
     }
     
     /**
